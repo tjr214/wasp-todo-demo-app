@@ -8,3 +8,16 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model User {
+  id    Int @id @default(autoincrement())
+  tasks Task[] // each `User` has many `Task`s
+}
+
+model Task {
+  id          Int @id @default(autoincrement())
+  description String
+  isDone      Boolean @default(false)
+  user        User @relation(fields: [userId], references: [id]) // link task.user to an actual `User`
+  userId      Int // Should be linked to associated `User`s id field.
+}

@@ -8,6 +8,9 @@ const config = {
         port: parseInt(process.env.PORT) || 3001,
         databaseUrl: process.env.DATABASE_URL,
         allowedCORSOrigins: [],
+        auth: {
+            jwtSecret: undefined
+        }
     },
     development: getDevelopmentConfig(),
     production: getProductionConfig(),
@@ -22,6 +25,9 @@ function getDevelopmentConfig() {
         frontendUrl,
         serverUrl,
         allowedCORSOrigins: '*',
+        auth: {
+            jwtSecret: 'DEVJWTSECRET'
+        }
     };
 }
 function getProductionConfig() {
@@ -31,6 +37,9 @@ function getProductionConfig() {
         frontendUrl,
         serverUrl,
         allowedCORSOrigins: [frontendUrl],
+        auth: {
+            jwtSecret: process.env.JWT_SECRET
+        }
     };
 }
 //# sourceMappingURL=config.js.map

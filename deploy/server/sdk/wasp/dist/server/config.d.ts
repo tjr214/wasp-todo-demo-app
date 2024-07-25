@@ -1,5 +1,8 @@
 type BaseConfig = {
     allowedCORSOrigins: string | string[];
+    auth: {
+        jwtSecret: string | undefined;
+    };
 };
 type CommonConfig = BaseConfig & {
     env: string;

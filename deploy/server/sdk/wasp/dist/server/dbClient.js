@@ -1,10 +1,6 @@
-// * Prisma will not generate a PrismaClient if there no
-//   entities in the schema. Trying to init the PrismaClient
-//   will throw an error.
-// * To avoid throwing an error, we return null if there are no
-//   entities in the schema.
+import Prisma from '@prisma/client';
 function createDbClient() {
-    return null;
+    return new Prisma.PrismaClient();
 }
 const dbClient = createDbClient();
 // PUBLIC API

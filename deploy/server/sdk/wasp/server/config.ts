@@ -11,6 +11,9 @@ const env = process.env.NODE_ENV || 'development'
 
 type BaseConfig = {
   allowedCORSOrigins: string | string[];
+  auth: {
+    jwtSecret: string | undefined;
+  }
 }
 
 type CommonConfig = BaseConfig & {
@@ -38,6 +41,9 @@ const config: {
     port: parseInt(process.env.PORT) || 3001,
     databaseUrl: process.env.DATABASE_URL,
     allowedCORSOrigins: [],
+    auth: {
+      jwtSecret: undefined
+    }
   },
   development: getDevelopmentConfig(),
   production: getProductionConfig(),
@@ -54,6 +60,9 @@ function getDevelopmentConfig(): EnvConfig {
     frontendUrl,
     serverUrl,
     allowedCORSOrigins: '*',
+    auth: {
+      jwtSecret: 'DEVJWTSECRET'
+    }
   }
 }
 
@@ -64,5 +73,8 @@ function getProductionConfig(): EnvConfig {
     frontendUrl,
     serverUrl,
     allowedCORSOrigins: [frontendUrl],
+    auth: {
+      jwtSecret: process.env.JWT_SECRET
+    }
   }
 }

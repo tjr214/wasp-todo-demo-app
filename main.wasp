@@ -2,10 +2,53 @@ app TodoDemoApp {
   wasp: {
     version: "^0.14.0"
   },
-  title: "TodoDemoApp"
+  title: "TodoDemoApp",
+  auth: {
+    userEntity: User, // Tells Wasp which entity to use for storing users.
+    methods: {
+      usernameAndPassword: {}, // Enable username and password auth.
+      // email: {}, // Enable email auth.
+      // gitHub: {}, // Enable GitHub auth.
+      // discord: {}, // Enable Discord auth.
+    },
+    onAuthFailedRedirectTo: "/login"
+  },
 }
+
+// --- Routes & Pages ------------------------------
 
 route RootRoute { path: "/", to: MainPage }
 page MainPage {
+  authRequired: true,
   component: import { MainPage } from "@src/MainPage"
+}
+
+route SignupRoute { path: "/signup", to: SignupPage }
+page SignupPage {
+  component: import { SignupPage } from "@src/SignupPage"
+}
+
+route LoginRoute { path: "/login", to: LoginPage }
+page LoginPage {
+  component: import { LoginPage } from "@src/LoginPage"
+}
+
+
+// --- Queries (Read) ------------------------------
+
+query getTasks {
+  fn: import { getTasks } from "@src/queries",
+  entities: [Task],
+}
+
+// --- Actions (Create, Update, Delete) --------------
+
+action createTask {
+  fn: import { createTask } from "@src/actions",
+  entities: [Task],
+}
+
+action updateTask {
+  fn: import { updateTask } from "@src/actions",
+  entities: [Task],
 }

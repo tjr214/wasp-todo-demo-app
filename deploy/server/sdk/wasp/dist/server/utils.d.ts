@@ -1,5 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-type RequestWithExtraFields = Request & {};
+import { type AuthUserData } from './auth/user.js';
+type RequestWithExtraFields = Request & {
+    user: AuthUserData | null;
+    sessionId: string | null;
+};
 /**
  * Decorator for async express middleware that handles promise rejections.
  * @param {Func} middleware - Express middleware function.

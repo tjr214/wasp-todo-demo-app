@@ -36,6 +36,8 @@ COPY server .wasp/build/server
 COPY sdk .wasp/out/sdk
 # Install npm packages, resulting in node_modules/.
 RUN npm install && cd .wasp/build/server && npm install
+COPY db/schema.prisma .wasp/build/db/
+RUN cd .wasp/build/server && npx prisma generate --schema='../db/schema.prisma'
 # Building the server should come after Prisma generation.
 RUN cd .wasp/build/server && npm run bundle
 

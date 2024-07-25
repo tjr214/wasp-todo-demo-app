@@ -13,6 +13,18 @@ export const routes = {
       options?: OptionalRouteOptions,
     ) => interpolatePath("/", undefined, options?.search, options?.hash),
   },
+  SignupRoute: {
+    to: "/signup",
+    build: (
+      options?: OptionalRouteOptions,
+    ) => interpolatePath("/signup", undefined, options?.search, options?.hash),
+  },
+  LoginRoute: {
+    to: "/login",
+    build: (
+      options?: OptionalRouteOptions,
+    ) => interpolatePath("/login", undefined, options?.search, options?.hash),
+  },
 } as const;
 
 // PRIVATE API
