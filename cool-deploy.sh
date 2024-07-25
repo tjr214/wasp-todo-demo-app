@@ -204,7 +204,7 @@ JWT_SECRET={{AUTH_SECRET}}" > .env.coolify); then
     echo "# Ignore the Coolify environment file." >> .gitignore
     echo "# This file is just for you (or the admin) and does not belong in a Git Repo!" >> .gitignore
     echo ".env.coolify" >> .gitignore
-    echo -e "\033[33m✅ ---  Updated \`.gitignore\` to be aware of the Coolify Environment file ---\033[0m"
+    echo -e "\033[33m✅ --- Updated \`.gitignore\` to be aware of the Coolify Environment file ---\033[0m"
   else
     echo -e "\033[33m✅ --- \`.gitignore\` is alread aware of the Coolify Environment file ---\033[0m"
   fi
