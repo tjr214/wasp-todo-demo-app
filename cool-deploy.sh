@@ -449,7 +449,7 @@ TIMESTAMP_UNIX=$(date +%s)
 TIMESTAMP_HUMAN=$(date "+%I:%M:%S %p on %m/%d/%Y")
 COMMIT_MSG="Cool-Deploy: $COMMIT_MSG
 
-Code pushed to repository at: $TIMESTAMP_HUMAN
+Code pushed to repository at: $TIMESTAMP_HUMAN.
 UNIX Epoc: [$TIMESTAMP_UNIX]
 "
 
@@ -480,7 +480,7 @@ if [ $elapsed_time -gt 59 ]; then
     if [ $minutes -gt 1 ]; then
       MINUTE_SUFIX="minutes"
     fi
-    echo -e "\033[1;33m🤖 --- DEPLOYMENT COMPLETED IN: $minutes $MINUTE_SUFIX and $seconds seconds!\033[0m"
+    echo -e "\033[1;33m🎉 --- DEPLOYMENT COMPLETED IN: $minutes $MINUTE_SUFIX and $seconds seconds!\033[0m"
 else
-    echo -e "\033[1;33m🤖 --- DEPLOYMENT COMPLETED IN: $elapsed_time seconds!\033[0m"
+    echo -e "\033[1;33m🎉 --- DEPLOYMENT COMPLETED IN: $elapsed_time seconds!\033[0m"
 fi
