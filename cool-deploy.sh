@@ -237,8 +237,9 @@ JWT_SECRET={{AUTH_SECRET}}" > .env.coolify); then
 
   echo
   if ! grep -q -z -E "JWT_SECRET" .env.server; then
+    LOCAL_JWT_SECRET=$(openssl rand -hex 32)
     echo "# JWT Secret for Wasp's Auth System (used for local dev only)" >> .env.server
-    echo "JWT_SECRET=$WASP_JWT_SECRET" >> .env.server
+    echo "JWT_SECRET=$LOCAL_JWT_SECRET" >> .env.server
     echo -e "\033[33m✅ --- Added 'JWT_SECRET' to \`.env.server\` for Local Development ---\033[0m"
   else
     echo -e "\033[33m✅ --- \`.env.server\` already has a 'JWT_SECRET' set up ---\033[0m"
@@ -325,6 +326,7 @@ if [ $# -gt 0 ]; then
     echo -e "\033[1;33mGit Commit Message:\033[0m $COMMIT_MSG"
 else
     COMMIT_MSG="Deployment from command line.
+
 
 No commit message provided.
 "
@@ -446,8 +448,6 @@ echo
 TIMESTAMP_UNIX=$(date +%s)
 TIMESTAMP_HUMAN=$(date "+%I:%M:%S %p on %m/%d/%Y")
 COMMIT_MSG="Cool-Deploy: $COMMIT_MSG
-
--------------------
 
 Code pushed to repository at: $TIMESTAMP_HUMAN
 UNIX Epoc: [$TIMESTAMP_UNIX]
